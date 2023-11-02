@@ -38,7 +38,10 @@ public class GithubMapper {
         List<GithubData> githubData = new ArrayList<>();
         try {
 
-            List<GetSingleOneResponseDto> responseDtos = usernameProxy.fetchAllSongs(username);
+            List<GetSingleOneResponseDto> responseDtos = usernameProxy.fetchAllSongs(username)
+                    .stream()
+                    .filter(getSingleOneResponseDto -> !getSingleOneResponseDto.fork())
+                    .toList();
 
             for (GetSingleOneResponseDto g : responseDtos) {
                 GetBranchDto lastCommitSha = branchesProxy.getBranches(g.owner().login(), g.name()).get(0);
