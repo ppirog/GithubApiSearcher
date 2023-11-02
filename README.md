@@ -1,5 +1,5 @@
 # GithubApiSearcher
-CRUD excercise
+REST excercise
 Acceptance criteria:
 
 FIRST
