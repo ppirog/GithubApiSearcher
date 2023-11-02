@@ -32,17 +32,17 @@ public class GithubUserRestController {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
 
-        if(header != null && header.equals("application/xml")){
+        if (header != null && header.equals("application/xml")) {
             throw new WrongExpectedDataFormatInHeaderException("XML format is not available");
         } else if (header != null && header.equals("application/json")) {
             List<GithubData> githubData = githubMapper.mapFromUsernameToGithubData(username);
 
             List<GithubDataResponseDto> dataResponseDtos = githubMapper.mapFromGithubDataToGithubDataResponseDto(githubData);
 
-            return new ResponseEntity<>(dataResponseDtos,httpHeaders, HttpStatus.OK);
+            return new ResponseEntity<>(dataResponseDtos, httpHeaders, HttpStatus.OK);
         }
 
-        return new ResponseEntity<>(List.of(),httpHeaders, HttpStatus.UNSUPPORTED_MEDIA_TYPE);
+        return new ResponseEntity<>(List.of(), httpHeaders, HttpStatus.UNSUPPORTED_MEDIA_TYPE);
     }
 
 }
