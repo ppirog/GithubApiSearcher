@@ -1,4 +1,4 @@
-package com.example.githubapisearcher.infrastructure.usernameproxy;
+package com.example.githubapisearcher.infrastructure.proxy.usernamerepo;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,14 +9,9 @@ import java.util.List;
 @FeignClient(value = "github-client")
 public interface GithubUsernameProxy {
     //ALL
-    //https://api.github.com/users/ppirog/repos
-
-    //JUST ONE PER PAGE
-    //https://api.github.com/users/ppirog/repos?per_page=1
-
+    //https://api.github.com/users/{username}/repos
 
     @GetMapping("/users/{username}/repos")
-    List<GetSingleOneResponseDto> fetchAllSongs(@PathVariable String username);
-
+    List<UsernameRepoDto> fetchAllUsernameRepos(@PathVariable String username);
 
 }

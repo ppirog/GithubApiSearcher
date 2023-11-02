@@ -2,11 +2,11 @@ package com.example.githubapisearcher.domain.service;
 
 import com.example.githubapisearcher.domain.model.GithubData;
 import com.example.githubapisearcher.domain.model.exception.WrongUsernameException;
-import com.example.githubapisearcher.infrastructure.branchesproxy.GetBranchDto;
-import com.example.githubapisearcher.infrastructure.branchesproxy.GithubBranchesProxy;
+import com.example.githubapisearcher.infrastructure.proxy.branch.BranchDto;
+import com.example.githubapisearcher.infrastructure.proxy.branch.GithubBranchesProxy;
 import com.example.githubapisearcher.infrastructure.restcontroller.dto.response.GithubDataResponseDto;
-import com.example.githubapisearcher.infrastructure.usernameproxy.GetSingleOneResponseDto;
-import com.example.githubapisearcher.infrastructure.usernameproxy.GithubUsernameProxy;
+import com.example.githubapisearcher.infrastructure.proxy.usernamerepo.UsernameRepoDto;
+import com.example.githubapisearcher.infrastructure.proxy.usernamerepo.GithubUsernameProxy;
 import feign.FeignException;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
@@ -38,13 +38,13 @@ public class GithubMapper {
         List<GithubData> githubData = new ArrayList<>();
         try {
 
-            List<GetSingleOneResponseDto> responseDtos = usernameProxy.fetchAllSongs(username)
+            List<UsernameRepoDto> responseDtos = usernameProxy.fetchAllUsernameRepos(username)
                     .stream()
-                    .filter(getSingleOneResponseDto -> !getSingleOneResponseDto.fork())
+                    .filter(usernameRepoDto -> !usernameRepoDto.fork())
                     .toList();
 
-            for (GetSingleOneResponseDto g : responseDtos) {
-                GetBranchDto lastCommitSha = branchesProxy.getBranches(g.owner().login(), g.name()).get(0);
+            for (UsernameRepoDto g : responseDtos) {
+                BranchDto lastCommitSha = branchesProxy.getBranches(g.owner().login(), g.name()).get(0);
                 if (lastCommitSha != null) {
                     githubData.add(new GithubData(g.name(), g.owner().login(), lastCommitSha.name(), lastCommitSha.commit().sha()));
                 } else {
