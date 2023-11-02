@@ -1,4 +1,4 @@
-package com.example.githubapisearcher.infrastructure.restcontroller;
+package com.example.githubapisearcher.domain.service;
 
 import com.example.githubapisearcher.domain.model.GithubData;
 import com.example.githubapisearcher.domain.model.exception.WrongUsernameException;
