@@ -1,4 +1,4 @@
-package com.example.githubapisearcher.usernameproxy;
+package com.example.githubapisearcher.infrastructure.usernameproxy;
 
 public record GetSingleOneResponseDto(
         Long id,

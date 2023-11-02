@@ -1,4 +1,4 @@
-package com.example.githubapisearcher.usernameproxy;
+package com.example.githubapisearcher.infrastructure.usernameproxy;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -1,7 +1,7 @@
 package com.example.githubapisearcher;
 
-import com.example.githubapisearcher.branchesproxy.GithubBranchesProxy;
-import com.example.githubapisearcher.usernameproxy.GithubUsernameProxy;
+import com.example.githubapisearcher.infrastructure.branchesproxy.GithubBranchesProxy;
+import com.example.githubapisearcher.infrastructure.usernameproxy.GithubUsernameProxy;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -28,7 +28,7 @@ public class GithubApiSearcherApplication {
     @EventListener(ApplicationStartedEvent.class)
     public void run(){
 
-        log.info(usernameProxy.fetchAllSongs("ppirog"));
-        log.info(branchesProxy.getBranches("ppirog","FeignClient"));
+//        log.info(usernameProxy.fetchAllSongs("ppirog"));
+//        log.info(branchesProxy.getBranches("ppirog","FeignClient"));
     }
 }

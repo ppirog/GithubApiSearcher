@@ -1,4 +1,4 @@
-package com.example.githubapisearcher.branchesproxy;
+package com.example.githubapisearcher.infrastructure.branchesproxy;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
