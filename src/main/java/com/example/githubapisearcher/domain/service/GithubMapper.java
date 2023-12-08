@@ -68,7 +68,6 @@ public class GithubMapper {
             }
 
         } catch (FeignException e) {
-            //TODO handle exception
             final String logMessage = "throw WrongUsernameException from " + this.getClass().getSimpleName();
             log.error(logMessage);
             final String clientMessage = "wrong username: " + username;

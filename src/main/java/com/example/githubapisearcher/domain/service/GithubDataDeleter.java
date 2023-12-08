@@ -32,7 +32,6 @@ public class GithubDataDeleter {
             log.info("deleted GithubData: " + login);
             githubDataRepository.deleteGithubDataByLogin(login);
         } else {
-            //TODO handle exception when there is not login in db
             log.info("user: " + login + " not exists");
         }
         return byLoginFromDatabase;
