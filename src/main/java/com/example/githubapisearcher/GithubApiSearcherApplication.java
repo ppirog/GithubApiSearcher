@@ -9,7 +9,6 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @EnableFeignClients
 @Log4j2
 public class GithubApiSearcherApplication {
-
     public static void main(String[] args) {
         SpringApplication.run(GithubApiSearcherApplication.class, args);
     }

@@ -1,5 +1,6 @@
 package com.example.githubapisearcher.infrastructure.restcontroller.error;
 
+import com.example.githubapisearcher.domain.model.exception.GithubDataNotFoundInDatabaseException;
 import com.example.githubapisearcher.domain.model.exception.WrongExpectedDataFormatInHeaderException;
 import com.example.githubapisearcher.domain.model.exception.WrongUsernameException;
 import com.example.githubapisearcher.infrastructure.restcontroller.GithubUserRestController;
@@ -26,6 +27,17 @@ public class ErrorUserHandler {
         final HttpStatus badRequest = HttpStatus.NOT_FOUND;
         log.error("messaage to client has been sent: " + clientMessage + " http status: " + badRequest);
         return new ErrorUserResponseDto(clientMessage, badRequest);
+    }
+
+    @ExceptionHandler(GithubDataNotFoundInDatabaseException.class)
+    @ResponseBody
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public NotFoundInDatabaseErrorResponseDto handleException(GithubDataNotFoundInDatabaseException exception) {
+
+        final String clientMessage = exception.getMessage();
+        final HttpStatus badRequest = HttpStatus.NOT_FOUND;
+
+        return new NotFoundInDatabaseErrorResponseDto(clientMessage, badRequest);
     }
 
     @ExceptionHandler(WrongExpectedDataFormatInHeaderException.class)
